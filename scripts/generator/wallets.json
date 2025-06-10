@@ -1,0 +1,44 @@
+[
+  {
+    "walletAddress": "0xb5A4F834608E160579e711F13063D056BF87F7B9",
+    "balanceEth": 3.744561781807918,
+    "balanceWei": "3744561781807918000",
+    "balanceHex": "0x33f75b19dc2a2bb0"
+  },
+  {
+    "walletAddress": "0x1eEDfeBf8e6922244E1FdC08327edb6edd19373c",
+    "balanceEth": 6.5076726231998325,
+    "balanceWei": "6507672623199832500",
+    "balanceHex": "0x5a4fe5c58c5c49b4"
+  },
+  {
+    "walletAddress": "0x7460411b3EB0C52420beD03ac2EbC6C8e552a004",
+    "balanceEth": 1.7725038534543804,
+    "balanceWei": "1772503853454380400",
+    "balanceHex": "0x189932dd1428cd70"
+  },
+  {
+    "walletAddress": "0x80AF43C34279632917C29fa59cE49ADd655a79bc",
+    "balanceEth": 4.041730030681585,
+    "balanceWei": "4041730030681585000",
+    "balanceHex": "0x38171c0c84cdf568"
+  },
+  {
+    "walletAddress": "0x1f102713435e2cdAdf283216f1aAd334CB37eda2",
+    "balanceEth": 2.676680424814217,
+    "balanceWei": "2676680424814217000",
+    "balanceHex": "0x25257aaa2a4b0728"
+  },
+  {
+    "walletAddress": "0x660728bC54CCbdCED3eE2a869549A44f19664036",
+    "balanceEth": 1.4776075005963054,
+    "balanceWei": "1477607500596305400",
+    "balanceHex": "0x148184316e7eddf8"
+  },
+  {
+    "walletAddress": "0x6bC9FaBDd3A3048d1fBcC685b8Ee13559015623a",
+    "balanceEth": 9.233254913572738,
+    "balanceWei": "9233254913572738000",
+    "balanceHex": "0x80231c6c8c2213d0"
+  }
+]
