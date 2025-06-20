@@ -15,7 +15,7 @@ function setPermissionContractData(): {
     fs.readFileSync(
       path.resolve(
         __dirname,
-        "../../../scripts/deployment/data/deployed-address.json"
+        "../../../data/addresses/event-permission-contract_Events-address.json"
       ),
       "utf-8"
     )
@@ -25,7 +25,7 @@ function setPermissionContractData(): {
     fs.readFileSync(
       path.resolve(
         __dirname,
-        "../../../scripts/compile/build/event-permission-contract-2_Events.json"
+        "../../../data/compilations/event-permission-contract_Events.json"
       ),
       "utf-8"
     )

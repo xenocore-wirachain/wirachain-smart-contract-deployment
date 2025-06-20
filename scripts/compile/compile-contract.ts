@@ -1,12 +1,17 @@
 import inquirer from "inquirer";
-import solc from "solc";
+// import solc from 'solc';
 import fs from "fs";
 import path from "path";
 
 const contractsDir = path.resolve(__dirname, "../../contracts");
 const buildDir = path.resolve(__dirname, "build");
 
+// const solc = require("solc");
+
+var solc = require('solc');
+
 function compile(fileName: string, source: string) {
+  console.log("Version: ", solc.version())
   var input = {
     language: "Solidity",
     sources: {
@@ -18,11 +23,13 @@ function compile(fileName: string, source: string) {
     settings: {
       outputSelection: {
         "*": {
-          "*": ["abi", "evm.bytecode"],
+          "*": ["abi", "evm.bytecode", "evm.deployedBytecode"],
         },
       },
     },
   };
+
+  console.log("input", input);
 
   // Compile
   const output = JSON.parse(solc.compile(JSON.stringify(input)));
@@ -34,19 +41,25 @@ function compile(fileName: string, source: string) {
       sources: { 'event-permission-contract.sol': { id: 0 } }
     }  
   */
+
+  // Create folder.
+  fs.mkdirSync("build", { recursive: true });
+
   console.log(output);
+  // Iterates over all .sol files (sources) (output.contracts is type: object)
   for (const solFileName in output.contracts) {
-    // Iterates over all .sol files (sources) (output.contracts is type: object)
     console.log("gaa", path.basename(solFileName));
     const contracts = output.contracts[solFileName];
     for (let contractName in contracts) {
       // Iterates over all contracts in that .sol file. (contracts is type: object)
       const { abi, evm } = contracts[contractName]; // These are called events.
-      const byteCode = evm.bytecode.object;
+      console.log("EVM", evm);
+      const bytecode = evm.bytecode.object;
+      const deployedBytecode = evm.deployedBytecode.object;
       // console.log("---------");
       // console.log("abi: ", abi);
       // console.log("evm: ", evm);
-      const artifact = { abi, byteCode };
+      const artifact = { abi, bytecode, deployedBytecode };
       const contractJsonFile = path.join(
         buildDir,
         `${path.basename(solFileName, ".sol")}_${contractName}.json`
@@ -55,9 +68,6 @@ function compile(fileName: string, source: string) {
       fs.writeFileSync(contractJsonFile, JSON.stringify(artifact));
     }
   }
-
-  // Create folder.
-  fs.mkdirSync("build", { recursive: true });
 }
 
 async function menuSelections() {

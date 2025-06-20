@@ -6,14 +6,17 @@ import path from "path";
 import readline from "readline";
 
 // Route
-const routeText = path.join(__dirname, "wallets.txt");
-const routeJson = path.join(__dirname, "wallets.json");
+fs.mkdirSync("build", { recursive: true });
+const routeText = path.join(__dirname, "build/wallets.txt");
+const routeJson = path.join(__dirname, "build/wallets.json");
 
 interface Account {
-  walletAddress: string;
+  walletAddress: string; // This is also public.
+  privateKey: string;
   balanceEth: number;
   balanceWei: string;
   balanceHex: string;
+  mnemonicPhrase?: string;
 }
 
 // Consts
@@ -34,8 +37,11 @@ function createWallets(numberWallets: number) {
   for (let i = 0; i < numberWallets - 1; i++) {
     const randomWei = randomFloat(MINIMUM_ETHER, MAXIMUM_ETHER);
     const generatedWallet = ethers.Wallet.createRandom();
+
     const newAccount: Account = {
       walletAddress: generatedWallet.address,
+      privateKey: generatedWallet.privateKey,
+      mnemonicPhrase: generatedWallet.mnemonic?.phrase,
       balanceEth: parseFloat(randomWei),
       balanceWei: etherToWei(randomWei).toString(),
       balanceHex: etherToHex(randomWei),
