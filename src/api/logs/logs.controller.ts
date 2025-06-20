@@ -5,7 +5,7 @@ import fs from "fs";
 
 const CHUNK_SIZE = 1000;
 
-const provider = new ethers.JsonRpcProvider("http://localhost:8545");
+const provider = new ethers.JsonRpcProvider(process.env.RCP_URL || "http://localhost:8545");
 
 function setPermissionContractData(): {
   permissionArtifact: any;
